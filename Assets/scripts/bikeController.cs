@@ -11,6 +11,7 @@ public class bikeController : MonoBehaviour {
 	float speed;
 	public float force;
 	float rotateSpeed;
+	public checkpointSystem cs;
 
 
 	// Use this for initialization
@@ -66,7 +67,8 @@ public class bikeController : MonoBehaviour {
 	{
 		if (Input.GetKey(KeyCode.R)) 
 		{
-			SceneManager.LoadScene("Level1");
+			cs.spawnAtCheckPoint(gameObject);
+			transform.rotation = new Quaternion(0, 0, 0,0);
 		}
 	}
 
