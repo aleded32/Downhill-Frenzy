@@ -13,7 +13,7 @@ public class bikeCollision : MonoBehaviour {
 	{
 		if (collision.collider.tag == "floor")
 		{
-			gameObject.GetComponent<bikeController>().force = 70;
+			gameObject.GetComponent<bikeController>().accelaration = new Vector3(0,0,40);
 		}
 
 		
@@ -38,7 +38,7 @@ public class bikeCollision : MonoBehaviour {
 	{
 		if (collision.collider.tag == "floor")
 		{
-			gameObject.GetComponent<bikeController>().force = 10;
+			gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 0);
 		}
 
 
