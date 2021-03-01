@@ -23,7 +23,7 @@ public class bikeAIController : MonoBehaviour {
 	{
 
 		accelaration = new Vector3(0, 0,15);
-		decelaration = new Vector3(0, 0, 140);
+		decelaration = new Vector3(0, 0, 155);
 
 
 	}
@@ -46,7 +46,7 @@ public class bikeAIController : MonoBehaviour {
 			}
 			else if (i == 1)
 			{
-				if (Physics.Raycast(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward, out hit[i], 25, layerMask[1]))
+				if (Physics.Raycast(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward, out hit[i], 23, layerMask[1]))
 				{
 					
 					if (rb.velocity.z > 0 && ishit == false)
