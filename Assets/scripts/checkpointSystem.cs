@@ -6,10 +6,15 @@ public class checkpointSystem : MonoBehaviour {
 
 	[SerializeField]
 	List<GameObject> checkpointPassed;
+	[SerializeField]
+	public GameObject[] checkpointList;
 
 	GameObject currentCheckpoint;
 	int i = -1;
-	 int finishedCheckpoint = 3;
+	int finishedCheckpoint = 3;
+
+
+
 
 
 	public void spawnAtCheckPoint(GameObject player)
@@ -38,6 +43,11 @@ public class checkpointSystem : MonoBehaviour {
 	public int getFinishedCheckpoint()
 	{
 		return finishedCheckpoint;
+	}
+
+	public GameObject getCheckpoint(int j) 
+	{
+		return checkpointList[j];
 	}
 
 }

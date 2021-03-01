@@ -88,7 +88,7 @@ public class bikeController : MonoBehaviour {
 
 	void clampVelocity() 
 	{
-		Mathf.Clamp(rb.velocity.z, 0, 50);
+		Mathf.Clamp(rb.velocity.z, 0, 15);
 	}
 
 	 

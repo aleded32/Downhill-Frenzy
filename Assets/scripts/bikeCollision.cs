@@ -7,13 +7,22 @@ public class bikeCollision : MonoBehaviour {
 
 	public bool isTouching = false;
 	public checkpointSystem cs;
+
 	bool isChecked = false;
+
+
 
 	void OnCollisionEnter(Collision collision) 
 	{
 		if (collision.collider.tag == "floor")
 		{
-			gameObject.GetComponent<bikeController>().accelaration = new Vector3(0,0,40);
+			if (gameObject.tag == "Player")
+				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 40);
+            else 
+			{
+				gameObject.GetComponent<bikeAIController>().accelaration = new Vector3(0, 0, 40);
+			}
+				
 		}
 
 		
@@ -24,8 +33,16 @@ public class bikeCollision : MonoBehaviour {
     {
 		if (collision.tag == "checkpoint" && isChecked == false)
 		{
-			cs.addCheckpoint(collision);
-			isChecked = true;
+			if (gameObject.layer == 1 << 13)
+			{
+				gameObject.GetComponent<bikeAIController>().checkpointPassed++;
+			}
+			else 
+			{
+				cs.addCheckpoint(collision);
+				isChecked = true;
+			}
+			
 		}
 	}
 
@@ -38,7 +55,11 @@ public class bikeCollision : MonoBehaviour {
 	{
 		if (collision.collider.tag == "floor")
 		{
-			gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 0);
+			if(gameObject.tag == "Player")
+				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 0);
+			else
+				gameObject.GetComponent<bikeAIController>().accelaration = new Vector3(0, 0, 0);
+
 		}
 
 

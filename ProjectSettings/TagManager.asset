@@ -17,11 +17,11 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - floor
+  - floorDrop
+  - floorStraight
+  - Player
+  - AI
   - 
   - 
   - 
