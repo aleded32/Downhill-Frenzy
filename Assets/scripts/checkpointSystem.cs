@@ -7,33 +7,46 @@ public class checkpointSystem : MonoBehaviour {
 	[SerializeField]
 	List<GameObject> checkpointPassed;
 	[SerializeField]
+	List<GameObject> checkpointPassedAI;
+	[SerializeField]
 	public GameObject[] checkpointList;
 
 	GameObject currentCheckpoint;
-	int i = -1;
+	public int[] i = {-1,  -1};
 	int finishedCheckpoint = 3;
 
 
+	
+	
 
 
-
-	public void spawnAtCheckPoint(GameObject player)
+	public void spawnAtCheckPoint(GameObject player, List<GameObject> checkpointList, int previousCheckpoint)
 	{
-		if (i >= 0)
-			player.transform.position = checkpointPassed[i].transform.position;
+		if (previousCheckpoint >= 0)
+            player.transform.position = checkpointList[previousCheckpoint].transform.position;
 
 	}
 
-	public void addCheckpoint(Collider colider)
+	public void addCheckpoint(Collider colider, List<GameObject> checkpointPassed, int[] previousCheckpoint, int i)
 	{
 		currentCheckpoint = colider.gameObject;
 		if (checkpointPassed.Find(x => x.name == colider.gameObject.name) != true || checkpointPassed.Count <= 0)
 		{
 			checkpointPassed.Add(currentCheckpoint);
-			i++;
+			previousCheckpoint[i]++;
 		}
 
 
+	}
+
+	public List<GameObject> getCheckpointList() 
+	{
+		return checkpointPassed;
+	}
+
+	public List<GameObject> getCheckpointListAI()
+	{
+		return checkpointPassedAI;
 	}
 
 	public int getCurrentCheckpoint() 

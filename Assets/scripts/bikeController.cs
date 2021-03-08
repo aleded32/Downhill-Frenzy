@@ -81,7 +81,7 @@ public class bikeController : MonoBehaviour {
 	{
 		if (Input.GetKey(KeyCode.R)) 
 		{
-			cs.spawnAtCheckPoint(gameObject);
+			cs.spawnAtCheckPoint(gameObject, cs.getCheckpointList(), cs.i[0]);
 			transform.rotation = new Quaternion(0, 0, 0,0);
 		}
 	}

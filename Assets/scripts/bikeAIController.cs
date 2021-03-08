@@ -22,8 +22,8 @@ public class bikeAIController : MonoBehaviour {
 	void Start ()
 	{
 
-		accelaration = new Vector3(0, 0,15);
-		decelaration = new Vector3(0, 0, 155);
+		accelaration = new Vector3(0, 0,5);
+		decelaration = new Vector3(0, 0, 52);
 
 
 	}
@@ -38,7 +38,7 @@ public class bikeAIController : MonoBehaviour {
 		{
 			if (i == 0) 
 			{
-				if (Physics.Raycast(transform.position, Vector3.forward, out hit[i], 5, layerMask[0]))
+				if (Physics.Raycast(transform.position, Vector3.forward, out hit[i], 7, layerMask[0]))
 				{
 					transform.rotation = hit[i].collider.gameObject.transform.rotation;
 					Debug.DrawRay(transform.position, Vector3.forward * hit[0].distance * 100, Color.red);
@@ -85,7 +85,7 @@ public class bikeAIController : MonoBehaviour {
 	
 	void Update () 
 	{
-		
+		Debug.Log(cs.i[1]);
 		if (time.start == true)
 		{
 			if (distFromCheckpoint(cs.getCheckpoint(checkpointPassed).transform.position, transform.position) > 0)
@@ -108,7 +108,7 @@ public class bikeAIController : MonoBehaviour {
 
 	void clampVelocity()
 	{
-		Mathf.Clamp(rb.velocity.z, 0, 15);
+		Mathf.Clamp(rb.velocity.z, 0, 10);
 	}
 
 }
