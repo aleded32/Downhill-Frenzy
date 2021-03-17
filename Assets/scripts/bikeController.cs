@@ -10,7 +10,7 @@ public class bikeController : MonoBehaviour {
 	public Rigidbody rb;
 	float speed;
 	public Vector3 accelaration;
-	float rotateSpeed;
+	public float rotateSpeed;
 	public checkpointSystem cs;
 	public TimerController time;
 
@@ -25,7 +25,7 @@ public class bikeController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate() 
+	void Update() 
 	{
 		if (time.start == true)
 		{

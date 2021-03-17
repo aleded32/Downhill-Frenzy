@@ -4,111 +4,93 @@ using UnityEngine;
 
 public class bikeAIController : MonoBehaviour {
 
-	public checkpointSystem cs;
-	public Rigidbody rb;
-	public TimerController time;
-	public GameObject pivotL;
-	public GameObject pivotR;
-	public Vector3 accelaration;
-	public Vector3 decelaration;
+	public GameObject bike;
 
-	public int checkpointPassed = 0;
-
-	RaycastHit[] hit = new RaycastHit[3];
-	int[] layerMask = new int[3];
-	bool ishit = false;
-
+	public List<Vector3> positions;
+	public List<Vector3> rotations;
+	int i;
+	bikeAIData data;
 
 	void Start ()
 	{
+		positions = new List<Vector3>();
+		rotations = new List<Vector3>();
+		i = 0;
+		data = SaveData.loadAI();
 
-		accelaration = new Vector3(0, 0,5);
-		decelaration = new Vector3(0, 0, 52);
 
 
 	}
 
-	public void checkFloorRotation() 
+	public void saveData() 
 	{
-		layerMask[0] = 1 << 9;
-		layerMask[1] = 1 << 10;
-		layerMask[2] = 1 << 11;
+		SaveData.SaveAI(this);
+	}
 
-		for (int i = 0; i < hit.Length; i++) 
-		{
-			if (i == 0) 
-			{
-				if (Physics.Raycast(transform.position, Vector3.forward, out hit[i], 7, layerMask[0]))
-				{
-					transform.rotation = hit[i].collider.gameObject.transform.rotation;
-					Debug.DrawRay(transform.position, Vector3.forward * hit[0].distance * 100, Color.red);
-				}
-			}
-			else if (i == 1)
-			{
-				if (Physics.Raycast(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward, out hit[i], 23, layerMask[1]))
-				{
-					
-					if (rb.velocity.z > 0 && ishit == false)
-					{
-						rb.velocity -= decelaration * Time.deltaTime;
-						
-					}
-					else if (rb.velocity.z <= 0) 
-					{
-						ishit = true;
-					}
-					
-					Debug.DrawRay(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward * 100, Color.red);
-				}
-				ishit = false;
-
-			}
-			else if (i == 2)
-			{
-				if (Physics.Raycast(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward, out hit[i], 6, layerMask[2]))
-				{
-					transform.rotation = hit[i].collider.gameObject.transform.rotation;
-					Debug.Log("hit");
-					//Debug.DrawRay(transform.position, Vector3.forward * hit[0].distance * 100, Color.red);
-				}
-			}
-
-			Debug.DrawRay(transform.position, Vector3.forward * hit[0].distance * 4, Color.green);
-			Debug.DrawRay(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward * 25, Color.green);
-			Debug.DrawRay(transform.position, Quaternion.AngleAxis(30.0f, Vector3.right) * Vector3.forward * 25, Color.green);
-
-		}
+	public void LoadData(int i) 
+	{
+		
 
 		
+			
+				positions.Add(new Vector3(data.positionX[i], data.positionY[i], data.positionZ[i]));
+
+				rotations.Add(new Vector3(data.rotationX[i], data.rotationY[i], data.rotationZ[i]));
+				
+			
+		
+		
 	}
+
 	
-	void Update () 
+	void FixedUpdate () 
 	{
-		Debug.Log(cs.i[1]);
-		if (time.start == true)
+
+		if (i < data.positionX.Length) 
 		{
-			if (distFromCheckpoint(cs.getCheckpoint(checkpointPassed).transform.position, transform.position) > 0)
-			{
-				rb.velocity += accelaration * Time.deltaTime;
-			}
-			checkFloorRotation();
-			clampVelocity();
+			LoadData(i);
+			i++;
+		}
+		
+		
+		moveAI();
+		//positions.Add(bike.transform.position);
+		//rotations.Add(bike.transform.rotation.eulerAngles);
+
+		
+
+		//transform.rotation = rotations[i] * Time.deltaTime;
+
+		/*foreach (Vector3 pos in positions) 
+		{
+			transform.position = pos;
 		}
 
+		foreach (Vector3 rot in rotations) 
+		{
+			transform.rotation = Quaternion.Euler(rot);
+		}*/
 		
-		
 	}
 
-
-	float distFromCheckpoint(Vector3 csPos, Vector3 AIPos) 
+	void moveAI() 
 	{
-		return Vector3.Distance(AIPos, csPos);
+		foreach (Vector3 pos in positions)
+		{
+			transform.position = Vector3.Lerp(transform.position, pos, Time.fixedDeltaTime/0.18f);
+			
+		}
+
+		foreach (Vector3 rot in rotations)
+		{
+			transform.rotation = Quaternion.Lerp(transform.rotation ,Quaternion.Euler(rot), Time.fixedDeltaTime/0.18f);
+			
+		}
 	}
 
-	void clampVelocity()
-	{
-		Mathf.Clamp(rb.velocity.z, 0, 10);
-	}
+
+
+
+
 
 }

@@ -29,8 +29,7 @@ public class bikeCollision : MonoBehaviour {
 			
 			if (gameObject.tag == "Player")
 				cs.spawnAtCheckPoint(gameObject, cs.getCheckpointList(), cs.i[0]);
-			else if (gameObject.tag == "AI")
-				cs.spawnAtCheckPoint(gameObject, cs.getCheckpointListAI(), cs.i[1]);
+
 
 		}
 
@@ -38,10 +37,6 @@ public class bikeCollision : MonoBehaviour {
 		{
 			if (gameObject.tag == "Player")
 				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 40);
-			else if (gameObject.tag == "AI")
-			{
-				gameObject.GetComponent<bikeAIController>().accelaration = new Vector3(0, 0, 40);
-			}
 				
 		}
 
@@ -53,11 +48,7 @@ public class bikeCollision : MonoBehaviour {
     {
 		if (collision.tag == "checkpoint" && isChecked == false)
 		{
-			if (gameObject.tag == "AI")
-			{
-				cs.addCheckpoint(collision, cs.getCheckpointListAI(), cs.i, 1);
-			}
-			else if(gameObject.tag == "Player")
+			if(gameObject.tag == "Player")
 			{
 				cs.addCheckpoint(collision, cs.getCheckpointList(),cs.i, 0);
 				isChecked = true;
@@ -80,8 +71,6 @@ public class bikeCollision : MonoBehaviour {
 		{
 			if(gameObject.tag == "Player")
 				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 0);
-			else
-				gameObject.GetComponent<bikeAIController>().accelaration = new Vector3(0, 0, 0);
 
 		}
 
