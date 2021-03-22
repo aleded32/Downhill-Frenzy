@@ -31,7 +31,7 @@ public class TimerController : MonoBehaviour {
 		}
 		else if(cs.getCurrentCheckpoint() >= cs.getFinishedCheckpoint() && start == true) 
 		{
-			Debug.Log(cs.getCurrentCheckpoint());
+			
 		}
 
 		

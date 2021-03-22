@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bikeAIController : MonoBehaviour {
 
@@ -16,7 +17,14 @@ public class bikeAIController : MonoBehaviour {
 		positions = new List<Vector3>();
 		rotations = new List<Vector3>();
 		i = 0;
-		data = SaveData.loadAI();
+		if (SceneManager.GetActiveScene().name == "Level1")
+		{
+			data = SaveData.loadAI("level1AI.data");
+		}
+		else if (SceneManager.GetActiveScene().name == "Level2")
+		{
+			data = SaveData.loadAI("level2AI.data");
+		}
 
 
 
@@ -24,7 +32,14 @@ public class bikeAIController : MonoBehaviour {
 
 	public void saveData() 
 	{
-		SaveData.SaveAI(this);
+		if (SceneManager.GetActiveScene().name == "Level1")
+		{
+			SaveData.SaveAI(this, "Level1AI.data");
+		}
+		else if (SceneManager.GetActiveScene().name == "Level2")
+		{
+			SaveData.SaveAI(this, "Level2AI.data");
+		}
 	}
 
 	public void LoadData(int i) 

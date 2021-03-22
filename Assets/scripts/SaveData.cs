@@ -5,11 +5,11 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveData {
 
-	public static void SaveAI(bikeAIController bikeAI) 
+	public static void SaveAI(bikeAIController bikeAI, string fileName) 
 	{
 		BinaryFormatter formatter = new BinaryFormatter();
 
-		string path = Application.persistentDataPath + "/aiData.data";
+		string path = Application.persistentDataPath + fileName;
 
 		FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -22,9 +22,9 @@ public static class SaveData {
 	}
 
 
-	public static bikeAIData loadAI() 
+	public static bikeAIData loadAI(string fileName) 
 	{
-		string path = Application.persistentDataPath + "/aiData.data";
+		string path = Application.persistentDataPath + fileName;
 
 		if (File.Exists(path))
 		{

@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 public class topBikeCollision : MonoBehaviour {
 
 	// Use this for initialization
-	void OnCollisionEnter(Collision collision)
+	public checkpointSystem cs;
+
+	void OnCollision(Collision collision)
 	{
 		if (collision.collider.tag == "floor")
 		{
-			Debug.Log("hello");
-			SceneManager.LoadScene("Level1");
+			cs.spawnAtCheckPoint(gameObject, cs.getCheckpointList(), cs.i[0]);
+			Debug.Log(1);
 		}
 
 	}

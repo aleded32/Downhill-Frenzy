@@ -23,7 +23,13 @@ public class checkpointSystem : MonoBehaviour {
 	public void spawnAtCheckPoint(GameObject player, List<GameObject> checkpointList, int previousCheckpoint)
 	{
 		if (previousCheckpoint >= 0)
-            player.transform.position = checkpointList[previousCheckpoint].transform.position;
+		{
+			player.transform.position = checkpointList[previousCheckpoint].transform.position;
+			player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+			player.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 40);
+			player.transform.rotation = new Quaternion(0,0,0,0);
+			player.GetComponent<bikeController>().rotateSpeed = 0;
+		}
 
 	}
 

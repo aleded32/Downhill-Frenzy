@@ -10,6 +10,7 @@ TagManager:
   - AI
   - jumpPad
   - spikes
+  - normFloor
   layers:
   - Default
   - TransparentFX

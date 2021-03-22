@@ -21,7 +21,7 @@ public class bikeCollision : MonoBehaviour {
 		if (collision.collider.tag == "jumpPad")
 		{
 			gameObject.GetComponent<Rigidbody>().velocity += new Vector3(0, 20, 0);
-			
+			gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<Rigidbody>().velocity.x, gameObject.GetComponent<Rigidbody>().velocity.y, gameObject.GetComponent<Rigidbody>().velocity.z -10);
 		}
 
 		if (collision.collider.tag == "spikes") 
@@ -29,16 +29,14 @@ public class bikeCollision : MonoBehaviour {
 			
 			if (gameObject.tag == "Player")
 				cs.spawnAtCheckPoint(gameObject, cs.getCheckpointList(), cs.i[0]);
-
-
 		}
 
-		if (collision.collider.tag == "floor")
+		if (collision.collider.tag == "floor" || collision.collider.tag == "normFloor")
 		{
-			if (gameObject.tag == "Player")
 				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 40);
-				
+			
 		}
+
 
 	}
 
@@ -67,14 +65,10 @@ public class bikeCollision : MonoBehaviour {
 
 	void OnCollisionExit(Collision collision) 
 	{
-		if (collision.collider.tag == "floor")
+		if (collision.collider.tag == "floor" || collision.collider.tag == "jumpPad")
 		{
-			if(gameObject.tag == "Player")
 				gameObject.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 0);
-
 		}
-
-
 		
 	}
 
