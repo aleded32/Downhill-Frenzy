@@ -55,9 +55,9 @@ public class bikeController : MonoBehaviour {
 
 
 			if (rb.velocity.z > -10 && rb.velocity.z < 10)
-				rotateSpeed = 80;
-			else
 				rotateSpeed = 120;
+			else
+				rotateSpeed = 220;
 
 		}
 

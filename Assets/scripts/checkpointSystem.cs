@@ -13,9 +13,12 @@ public class checkpointSystem : MonoBehaviour {
 
 	GameObject currentCheckpoint;
 	public int[] i = {-1,  -1};
-	int finishedCheckpoint = 3;
+	int finishedCheckpoint;
 
-
+	void Start() 
+	{
+		finishedCheckpoint = checkpointList.Length;
+	}
 	
 	
 
@@ -27,7 +30,7 @@ public class checkpointSystem : MonoBehaviour {
 			player.transform.position = checkpointList[previousCheckpoint].transform.position;
 			player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 			player.GetComponent<bikeController>().accelaration = new Vector3(0, 0, 40);
-			player.transform.rotation = new Quaternion(0,0,0,0);
+			player.transform.RotateAround(player.transform.position, Vector3.zero, 0);
 			player.GetComponent<bikeController>().rotateSpeed = 0;
 		}
 

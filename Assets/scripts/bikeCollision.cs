@@ -20,8 +20,9 @@ public class bikeCollision : MonoBehaviour {
 
 		if (collision.collider.tag == "jumpPad")
 		{
-			gameObject.GetComponent<Rigidbody>().velocity += new Vector3(0, 20, 0);
-			gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<Rigidbody>().velocity.x, gameObject.GetComponent<Rigidbody>().velocity.y, gameObject.GetComponent<Rigidbody>().velocity.z -10);
+			gameObject.GetComponent<Rigidbody>().velocity += new Vector3(0, 20, 2);
+			
+			//gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<Rigidbody>().velocity.x, gameObject.GetComponent<Rigidbody>().velocity.y, gameObject.GetComponent<Rigidbody>().velocity.z -10);
 		}
 
 		if (collision.collider.tag == "spikes") 
