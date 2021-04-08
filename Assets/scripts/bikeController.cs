@@ -13,7 +13,10 @@ public class bikeController : MonoBehaviour {
 	public float rotateSpeed;
 	public checkpointSystem cs;
 	public TimerController time;
-
+	public GameObject pauseMenu;
+	public GameObject gameHUD;
+	public bool isPaused;
+	bool isPressed;
 
 	// Use this for initialization
 	void Start () 
@@ -21,13 +24,16 @@ public class bikeController : MonoBehaviour {
 		speed = 15;
 		rotateSpeed = 200;
 		accelaration = new Vector3(0,0,40);
+		isPaused = false;
+		isPressed = false;
+		Time.timeScale = 1.0f;
 		
 	}
 	
 	// Update is called once per frame
 	void Update() 
 	{
-		if (time.start == true)
+		if (time.start == true && isPaused == false)
 		{
 
 			if (Input.GetKey(KeyCode.W))
@@ -53,17 +59,45 @@ public class bikeController : MonoBehaviour {
 				rotateWheel(pivotL, Vector3.left);
 			}
 
+			
+
 
 			if (rb.velocity.z > -10 && rb.velocity.z < 10)
 				rotateSpeed = 120;
 			else
 				rotateSpeed = 220;
 
+			clampVelocity();
+
+			restartFromCheckPoint();
+
 		}
 
-		clampVelocity();
+		if (Input.GetKeyDown(KeyCode.Escape) && !isPressed)
+		{
+			if (!isPaused)
+			{
+				Time.timeScale = 0.0f;
+				pauseMenu.SetActive(true);
+				gameHUD.SetActive(false);
+				
+				isPaused = true;
+			}
+			else if (isPaused)
+			{
+				pauseMenu.SetActive(false);
+				gameHUD.SetActive(true);
+				Time.timeScale = 1.0f;
+				isPaused = false;
+			}
+			isPressed = true;
+		}
+		else 
+		{
+			isPressed = false;
+		}
 
-		restartFromCheckPoint();
+		
 	}
 
 

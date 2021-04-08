@@ -60,15 +60,17 @@ public class bikeAIController : MonoBehaviour {
 	
 	void FixedUpdate () 
 	{
-
-		if (i < data.positionX.Length) 
+		if (!bike.GetComponent<bikeController>().isPaused)
 		{
-			LoadData(i);
-			i++;
+			if (i < data.positionX.Length)
+			{
+				LoadData(i);
+				i++;
+			}
+
+
+			moveAI();
 		}
-		
-		
-		moveAI();
 		//positions.Add(bike.transform.position);
 		//rotations.Add(bike.transform.rotation.eulerAngles);
 
