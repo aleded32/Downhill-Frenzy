@@ -11,6 +11,7 @@ TagManager:
   - jumpPad
   - spikes
   - normFloor
+  - audio
   layers:
   - Default
   - TransparentFX

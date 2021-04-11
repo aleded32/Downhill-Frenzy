@@ -17,6 +17,7 @@ public class bikeController : MonoBehaviour {
 	public GameObject gameHUD;
 	public bool isPaused;
 	bool isPressed;
+	public EndScreen end;
 
 	// Use this for initialization
 	void Start () 
@@ -35,41 +36,45 @@ public class bikeController : MonoBehaviour {
 	{
 		if (time.start == true && isPaused == false)
 		{
-
-			if (Input.GetKey(KeyCode.W))
-			{
-				move(accelaration);
-			}
-			else if (Input.GetKey(KeyCode.S))
-			{
-				move(-accelaration);
-			}
-			else
+			if (!end.finishedBool)
 			{
 
+				if (Input.GetKey(KeyCode.W))
+				{
+					move(accelaration);
+				}
+				else if (Input.GetKey(KeyCode.S))
+				{
+					move(-accelaration);
+				}
+				else
+				{
+
+				}
+
+				if (Input.GetKey(KeyCode.D))
+				{
+
+					rotateWheel(pivotR, Vector3.right);
+				}
+				else if (Input.GetKey(KeyCode.A))
+				{
+					rotateWheel(pivotL, Vector3.left);
+				}
+
+
+
+
+				if (rb.velocity.z > -10 && rb.velocity.z < 10)
+					rotateSpeed = 120;
+				else
+					rotateSpeed = 220;
+
+				clampVelocity();
+
+				restartFromCheckPoint();
+
 			}
-
-			if (Input.GetKey(KeyCode.D))
-			{
-
-				rotateWheel(pivotR, Vector3.right);
-			}
-			else if (Input.GetKey(KeyCode.A))
-			{
-				rotateWheel(pivotL, Vector3.left);
-			}
-
-			
-
-
-			if (rb.velocity.z > -10 && rb.velocity.z < 10)
-				rotateSpeed = 120;
-			else
-				rotateSpeed = 220;
-
-			clampVelocity();
-
-			restartFromCheckPoint();
 
 		}
 

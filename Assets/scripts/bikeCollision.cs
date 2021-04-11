@@ -10,7 +10,7 @@ public class bikeCollision : MonoBehaviour {
 
 	bool isChecked = false;
 
-	
+
 
 
 

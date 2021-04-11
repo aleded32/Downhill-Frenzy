@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour {
 
 	void UpdateTimerText()
 	{
-		TimerText.text = timer.hours + "." + timer.minutes + "." + timer.timer.ToString("f0");
+		TimerText.text = timer.hours.ToString("f0") + "." + timer.minutes.ToString("f0") + "." + timer.timer.ToString("f0");
 	}
 
 	void UpdateStartTimerText() 

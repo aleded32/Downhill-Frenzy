@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4170412274312646}
+  - component: {fileID: 114962585720570516}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -133,3 +134,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   i: ffffffffffffffff
+--- !u!114 &114962585720570516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1905263986661630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e258bf543852da34da68de50716c17d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSlider: {fileID: 0}

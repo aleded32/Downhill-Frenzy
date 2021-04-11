@@ -17,11 +17,11 @@ public class bikeAIController : MonoBehaviour {
 		positions = new List<Vector3>();
 		rotations = new List<Vector3>();
 		i = 0;
-		if (SceneManager.GetActiveScene().name == "Level1")
+		if (SceneManager.GetActiveScene().name == "Level1Vs")
 		{
 			data = SaveData.loadAI("level1AI.data");
 		}
-		else if (SceneManager.GetActiveScene().name == "Level2")
+		else if (SceneManager.GetActiveScene().name == "Level2Vs")
 		{
 			data = SaveData.loadAI("level2AI.data");
 		}
@@ -32,11 +32,11 @@ public class bikeAIController : MonoBehaviour {
 
 	public void saveData() 
 	{
-		if (SceneManager.GetActiveScene().name == "Level1")
+		if (SceneManager.GetActiveScene().name == "Level1Vs")
 		{
 			SaveData.SaveAI(this, "Level1AI.data");
 		}
-		else if (SceneManager.GetActiveScene().name == "Level2")
+		else if (SceneManager.GetActiveScene().name == "Level2Vs")
 		{
 			SaveData.SaveAI(this, "Level2AI.data");
 		}
